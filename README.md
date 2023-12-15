@@ -11,7 +11,7 @@ The original concept of this game is Alex Randolph's XE QUEO, with more modern i
 
 
 
-In the original versions, players have multiple pieces on the board that are known to be owned by that player. What isn't known is which piece is marked as "it" (e.g. the one that needs to reach the goal spot). This version of the game introduces more difficulty by allowing any piece on the board to be moved, even your opponent's
+In the original versions, players have multiple pieces on the board that are known to be owned by that player. What isn't known is which piece is marked as "it" (e.g. the one that needs to reach the goal spot). This version of the game introduces some changes, including increased difficulty by allowing any piece on the board to be moved, even your opponent's.
 
 
 ## Board / Arrangement
