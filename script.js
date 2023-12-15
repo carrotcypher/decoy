@@ -4,36 +4,76 @@ $(document).ready(function() {
     const $guessButton = $('#guess-button');
     let currentPlayer = 1;
     let playerColors = { 1: null, 2: null };
+    let selectedColor = null;
     let gameStarted = false;
+    let isGuessing = false;
+    
+ 
+   function showColorChoice(isGuess = false) {
+        isGuessing = isGuess;
+        $('#color-choice-popup').fadeIn();
+        //$('#player-turn').text(isGuessing ? `Player ${currentPlayer}, guess Player ${currentPlayer === 1 ? 2 : 1}'s color` : `Player ${currentPlayer}, choose your color`);
+        $('.color-choice').removeClass('selected').show();
+        $('#popup-msg').text(`Player ${currentPlayer}, choose your color`);
+
+        if (!isGuessing) {
+            if (currentPlayer === 2 && playerColors[1]) {
+                $('.color-choice[data-color="' + playerColors[1] + '"]').hide();
+            }
+        }
+
+        selectedColor = null;
+    }
+    $('.color-choice').click(function() {
+        selectedColor = $(this).data('color');
+        $(this).addClass('selected').siblings().removeClass('selected');
+    });
+    
+    
+    $('#confirm-color').click(function() {
+        if (selectedColor) {
+            if (isGuessing) {
+                const opponentPlayer = currentPlayer === 1 ? 2 : 1;
+                if (selectedColor === playerColors[opponentPlayer]) {
+                    alert(`Correct! Player ${currentPlayer} wins!`);
+                    gameStarted = false;
+                } else {
+                    alert(`Incorrect! Player ${opponentPlayer} wins!`);
+                    gameStarted = false;
+                }
+                $('#color-choice-popup').fadeOut();
+                updateTurnDisplay();
+            } else {
+                playerColors[currentPlayer] = selectedColor;
+
+                if (currentPlayer === 1) {
+                    currentPlayer = 2;
+                    showColorChoice(); // Show the popup again for player 2
+                } else {
+                    $('#color-choice-popup').fadeOut();
+                    gameStarted = true;
+                    // Continue with the game setup...
+
+                    $('#player1-color').css('background-color', playerColors[1]);
+                    $('#player2-color').css('background-color', playerColors[2]);
+                
+                
+                }
+            }
+        } else {
+            alert('Please select a color.');
+        }
+    });
+    
+    
     
      $guessButton.on('click', function() {
         if (!gameStarted) return;
 
-        const opponentPlayer = currentPlayer === 1 ? 2 : 1;
-        const guess = prompt(`Player ${currentPlayer}, guess Player ${opponentPlayer}'s color:`);
-
-        if (guess.toLowerCase() === playerColors[opponentPlayer].toLowerCase()) {
-            alert(`Correct! Player ${currentPlayer} wins!`);
-            alert("Player " + opponentPlayer + "'s color was " + playerColors[opponentPlayer])
-            gameStarted = false;
-            end_game();
-        } else {
-            alert(`Incorrect! Player ${opponentPlayer} wins!`);
-            alert("Player " + opponentPlayer + "'s color was " + playerColors[opponentPlayer])
-            gameStarted = false;
-            end_game();
-        }
-
-        updateTurnDisplay();
+         showColorChoice(true);
     });
     
     
-    function end_game() {
-        $playerTurnDisplay.text('Reload to play again.');
-        location.reload(); 
-        return false;
-    }
-
     function shuffle(array) {
         for (let i = array.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
@@ -47,11 +87,11 @@ $(document).ready(function() {
         const cellRow = Math.floor(index / 7);
         const cellCol = index % 7;
 
-        return Math.abs(homeRow - cellRow) > 2 || Math.abs(homeCol - cellCol) > 2;
+        return Math.abs(homeRow - cellRow) > 3 || Math.abs(homeCol - cellCol) > 3;
     }
 
     function updateTurnDisplay() {
-        $playerTurnDisplay.text(gameStarted ? `Player ${currentPlayer}'s turn` : 'Choose your colors');
+        $playerTurnDisplay.text(gameStarted ? `Player ${currentPlayer}'s turn` : 'Game over! Reload to play again.');
     }
 
     function switchTurns() {
@@ -61,16 +101,29 @@ $(document).ready(function() {
 
     function checkForWin(color, targetIndex) {
         if ($board.children('.circle').eq(targetIndex).hasClass('home')) {
-            alert(`Player ${currentPlayer} wins!`);
-            gameStarted = false;
-            end_game();
+            const opponentPlayer = currentPlayer === 1 ? 2 : 1;
 
-            updateTurnDisplay();
-            
-        
+            let message = "Nobody wins!";
+            if (color === playerColors[opponentPlayer]) {
+                message = `Player ${opponentPlayer} wins! Their color was ${playerColors[opponentPlayer]}`;
+            } else if (color === playerColors[currentPlayer]) {
+                message = `Player ${currentPlayer} wins! Their color was ${playerColors[currentPlayer]}`;
+            }
+
+            $('#win-message').text(message);
+            $('#win-popup').fadeIn();
+
+            gameStarted = false;
         }
     }
 
+    $('#close-custom-popup').click(function() {
+        $('#win-popup').fadeOut();
+        // Any additional logic to reset or end the game can go here
+    });
+
+    
+    
     for (let i = 0; i < 49; i++) {
         $('<div></div>', {
             class: 'circle',
@@ -151,9 +204,14 @@ $(document).ready(function() {
         return false;
     }
 
-    // Player color choice logic (example implementation)
-    playerColors[1] = prompt("Player 1, please choose a color:"); // Example: Player 1 chooses green
-    playerColors[2] = prompt("Player 2, please choose a color:");  // Example: Player 2 chooses blue
+
+    showColorChoice();
+    
+    
+    // Toggle spoiler content on button click
+    $('#spoiler-button').click(function() {
+        $('#spoiler-content').slideToggle();
+    });
     gameStarted = true;
     updateTurnDisplay();
 
