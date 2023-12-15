@@ -12,7 +12,7 @@ $(document).ready(function() {
    function showColorChoice(isGuess = false) {
         isGuessing = isGuess;
         $('#color-choice-popup').fadeIn();
-        //$('#player-turn').text(isGuessing ? `Player ${currentPlayer}, guess Player ${currentPlayer === 1 ? 2 : 1}'s color` : `Player ${currentPlayer}, choose your color`);
+        $('#player-turn').text(isGuessing ? `Player ${currentPlayer}, guess Player ${currentPlayer === 1 ? 2 : 1}'s color` : `Player ${currentPlayer}, choose your color`);
         $('.color-choice').removeClass('selected').show();
         $('#popup-msg').text(`Player ${currentPlayer}, choose your color`);
 
@@ -33,16 +33,22 @@ $(document).ready(function() {
     $('#confirm-color').click(function() {
         if (selectedColor) {
             if (isGuessing) {
+
                 const opponentPlayer = currentPlayer === 1 ? 2 : 1;
+                let message = "Nobody wins! Game over.";
                 if (selectedColor === playerColors[opponentPlayer]) {
-                    alert(`Correct! Player ${currentPlayer} wins!`);
-                    gameStarted = false;
-                } else {
-                    alert(`Incorrect! Player ${opponentPlayer} wins!`);
-                    gameStarted = false;
-                }
+                    message = `Player ${currentPlayer} wins! Player ${opponentPlayer}'s color was ${playerColors[opponentPlayer]}`;
+                } 
+
                 $('#color-choice-popup').fadeOut();
+                $('#win-message').text(message);
+                $('#win-popup').fadeIn();
+
+                
+                gameStarted = false;
+                
                 updateTurnDisplay();
+
             } else {
                 playerColors[currentPlayer] = selectedColor;
 
@@ -50,13 +56,14 @@ $(document).ready(function() {
                     currentPlayer = 2;
                     showColorChoice(); // Show the popup again for player 2
                 } else {
+                    currentPlayer = 1;
+                    updateTurnDisplay();
                     $('#color-choice-popup').fadeOut();
                     gameStarted = true;
                     // Continue with the game setup...
 
                     $('#player1-color').css('background-color', playerColors[1]);
                     $('#player2-color').css('background-color', playerColors[2]);
-                
                 
                 }
             }
