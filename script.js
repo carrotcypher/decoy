@@ -14,10 +14,12 @@ $(document).ready(function() {
 
         if (guess.toLowerCase() === playerColors[opponentPlayer].toLowerCase()) {
             alert(`Correct! Player ${currentPlayer} wins!`);
+            alert("Player " + opponentPlayer + "'s color was " + playerColors[opponentPlayer])
             gameStarted = false;
             end_game();
         } else {
             alert(`Incorrect! Player ${opponentPlayer} wins!`);
+            alert("Player " + opponentPlayer + "'s color was " + playerColors[opponentPlayer])
             gameStarted = false;
             end_game();
         }
