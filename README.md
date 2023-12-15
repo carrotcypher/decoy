@@ -4,7 +4,14 @@
 [Play the game now.](https://carrotcypher.github.io/decoy)
 
 
-The original concept of this game is Alex Randolph's XE QUEO, with more modern inspiration from Woobo's "Will you marry me". In the original versions, players have multiple pieces on the board that are known to be owned by that player. What isn't known is which piece is marked as "it" (e.g. the one that needs to reach the goal spot). This version of the game introduces more difficulty by allowing any piece on the board to be moved, even your opponent's
+The original concept of this game is Alex Randolph's XE QUEO, with more modern inspiration from Woobo's "Will you marry me".
+
+<img src="https://github.com/carrotcypher/decoy/assets/37557436/191f976e-6016-41df-a3ba-e6e65f4f2b7c" width="100px"> &nbsp; &nbsp; 
+<img src="https://github.com/carrotcypher/decoy/assets/37557436/764af8a8-71a9-43cb-95a1-9eda46ae58a5" width="100px"> &nbsp; &nbsp; 
+
+
+
+In the original versions, players have multiple pieces on the board that are known to be owned by that player. What isn't known is which piece is marked as "it" (e.g. the one that needs to reach the goal spot). This version of the game introduces more difficulty by allowing any piece on the board to be moved, even your opponent's
 
 
 ## Board / Arrangement
