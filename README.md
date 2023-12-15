@@ -64,12 +64,24 @@ Versus: player vs player
 Rounds: ∞
 
 
-## Provably fair 
+## Perfectly Fair / Provably Fair 
 
 What's special about this game and games of this type?
 
-Anyone can take this game and make both a perfectly fair and provaby fair game out of the concept.
+Anyone can take this game and modify it slightly to make both a perfectly fair and provaby fair game out of the concept.
 
-If it is modified to where turns are taken simultaneously and are double-blind (neither player sees the result until both have played their turn), the game becomes perfectly fair (players have an equal chance of winning). In its current form it cannot be considered perfectly fair as there are advantages and disadvantages to starting first or second, seeing what your opponent's choices are and changing your strategy or movements accordingly, etc.
+### Perfectly Fair
 
-If turns are limited and enforced as one per each player (via a client-server, blockchain, or other model for validating movements in a way players can't see), thus guaranteeing that players do not have the ability to endlessly attempt tries, then it becomes provably fair. In its current form it is not provably fair as it is single computer, two player and locally modifiable.
+If it is modified to where:
+
+* turns are taken simultaneously and are double-blind (neither player sees the result until both have played their turn); and
+* player starting positions are all the same distance away from the goal and each other
+
+then the game becomes perfectly fair (players have a mathematically perfectly equal chance of winning). In its current form it cannot be considered perfectly fair as there are advantages and disadvantages to starting first or second, location of the pieces and goal, and seeing what your opponent's choices are and changing your strategy or movements accordingly.
+
+
+### Provably Fair
+
+If turns are limited and enforced as one per each player (via a client-server, blockchain, or other model for validating movements in a way players can't see), thus guaranteeing that players do not have the ability to endlessly attempt tries, then it can become provably fair by hashing the movements and submitting only the hashes until both players have made their moves.
+
+In its current form it is not provably fair as it is a local two player game and easily both modifiable and cheatable by watching your player's selections.
