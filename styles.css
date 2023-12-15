@@ -1,7 +1,21 @@
-#player-turn {
+body {
+  user-select: none;
+}
+.home {
+  background-color: black !important; /* Make the home spot black */
+}
+
+#guess-button {
   padding: 10px;
   margin-bottom: 20px;
   text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+#player-turn {
+  padding: 10px;
+  margin-bottom: 20px;
   font-size: 24px;
   font-weight: bold;
   color: #333;
@@ -28,6 +42,7 @@
 }
 
 .monster {
+cursor: pointer;
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -37,10 +52,25 @@
   transform: translate(-50%, -50%);
 }
 
-/* Add styles for each monster color */
-/* ... (other color styles remain the same) ... */
+/* Color styles for each monster */
+.green { background-color: green; }
+.yellow { background-color: yellow; }
+.blue { background-color: blue; }
+.pink { background-color: pink; }
+.orange { background-color: orange; }
+.red { background-color: red; }
+.purple { background-color: purple; }
 
 /* Highlight selected monster */
 .monster.selected {
   border: 2px solid gold;
 }
+
+.monster:active {
+  cursor: grabbing; /* Grabbing hand cursor when active (dragging) */
+}
+
+
+
+
+
