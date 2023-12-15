@@ -1,0 +1,46 @@
+#player-turn {
+  padding: 10px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+#game-board {
+  display: grid;
+  grid-template-columns: repeat(7, 50px);
+  grid-template-rows: repeat(7, 50px);
+  gap: 10px;
+  margin: auto;
+}
+
+.circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dotted #000;
+  position: relative; /* For absolute positioning of the monsters */
+}
+
+.monster {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  position: absolute; /* Monster positioning inside the circle */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Add styles for each monster color */
+/* ... (other color styles remain the same) ... */
+
+/* Highlight selected monster */
+.monster.selected {
+  border: 2px solid gold;
+}
