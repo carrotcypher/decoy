@@ -85,3 +85,7 @@ then the game becomes perfectly fair (players have a mathematically perfectly eq
 If turns are limited and enforced as one per each player (via a client-server, blockchain, or other model for validating movements in a way players can't see), thus guaranteeing that players do not have the ability to endlessly attempt tries, then it can become provably fair by hashing the movements and submitting only the hashes until both players have made their moves.
 
 In its current form it is not provably fair as it is a local two player game and easily both modifiable and cheatable by watching your player's selections.
+
+### Other similar games
+
+For other potential perfectly fair, provably fair games [click here](ideas.md).
